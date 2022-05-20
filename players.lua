@@ -107,8 +107,13 @@ function file:start(lib,win)
           end
       end
   end)
+	
+  local players = {}
+  for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+    table.insert(players,v.Name)
+  end
 
-  local hp = kills:Dropdown("Heal Player",game:GetService("Players"):GetPlayers(),function(x)
+  local hp = kills:Dropdown("Heal Player",players,function(x)
       if game.Players:FindFirstChild(x) then
           if game.Players[x].Character then
               local c = sc()
@@ -177,7 +182,7 @@ function file:start(lib,win)
       end
   end)
 
-  local tp = kills:Dropdown("Touch Player",game:GetService("Players"):GetPlayers(),function(x)
+  local tp = kills:Dropdown("Touch Player",players,function(x)
       if game.Players:FindFirstChild(x) then
           if game.Players[x].Character then
               local c = sc()
