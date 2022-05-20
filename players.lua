@@ -12,6 +12,29 @@ end
 local file = {}
 function file:start(lib,win)
   local kills = win:Tab("Players")
+	local av = false
+	kills:Toggle("Anti-void",false,function(x)
+		av = x
+		if x == true then
+		    local pos
+		    while x == true and wait() do
+			if game.Players.LocalPlayer.Character then
+			    pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			end
+		    end
+		    local ca = game.Players.LocalPlayer.PlayerGui.ChildAdded:Connect(function(child)
+			if child.Name == "VoidScreen" then
+			    if game.Players.LocalPlayer.Character then
+				game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+			    end
+			    child:Destroy()
+			end
+		    end)
+		    repeat wait() until av == false
+		    ca:Disconnect()
+		end	
+	end)
   kills:Label("God-Mode.")
   local everyone = false
   local others = false
@@ -197,13 +220,21 @@ function file:start(lib,win)
   end)
 
   game.Players.PlayerAdded:Connect(function()
-      hp:refresh(game:GetService("Players"):GetPlayers())
-      tp:refresh(game:GetService("Players"):GetPlayers())
+    local players = {}
+    for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+      table.insert(players,v.Name)
+    end
+    hp:refresh(players)
+    tp:refresh(players)
   end)
 
   game.Players.PlayerRemoving:Connect(function()
-      hp:refresh(game:GetService("Players"):GetPlayers())
-      tp:refresh(game:GetService("Players"):GetPlayers())
+    local players = {}
+    for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+      table.insert(players,v.Name)
+    end
+    hp:refresh(players)
+    tp:refresh(players)
   end)
 end
 
