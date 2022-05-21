@@ -15,24 +15,25 @@ function file:start(lib,win)
 	kills:Toggle("Anti-void",false,function(x)
 		options.av = x
 		if options.av == true then
-		    local pos
-		    while x == true and wait() do
-                if game.Players.LocalPlayer.Character then
-                    pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                end
-		    end
-		    local ca = game.Players.LocalPlayer.PlayerGui.ChildAdded:Connect(function(child)
-                if child.Name == "VoidScreen" then
-                    if game.Players.LocalPlayer.Character then
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-                    end
-                    child:Destroy()
-                end
-		    end)
-		    repeat wait() until options.av == false
-		    ca:Disconnect()
-		end	
+			local pos
+			local ca = game.Players.LocalPlayer.PlayerGui.ChildAdded:Connect(function(child)
+			    if child.Name == "VoidScreen" then
+				child:Destroy()
+				if game.Players.LocalPlayer.Character then
+				    game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+				    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+				end
+			    end
+			end)
+
+			while options.av == true and wait() do
+			    if game.Players.LocalPlayer.Character then
+				pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			    end
+			end
+			repeat wait() until options.av == false
+			ca:Disconnect()
+		end
 	end)
 
     kills:Label("God-Mode.")
