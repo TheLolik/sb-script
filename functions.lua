@@ -1,5 +1,5 @@
 local f = {}
-local function f:fire(args,tool)
+function f:fire(args,tool)
     if typeof(args) == "table" then
         args = unpack(args)
     end
