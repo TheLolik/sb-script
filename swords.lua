@@ -53,7 +53,7 @@ function file:start(lib,win)
     end)
 
     tab:Button("Get killstreak kills.", function()
-        if gid == nil then
+        if kills == nil then
             return lib:Notification("Notify","Reedem kills you want to get.","Ok")
         end
         local args = {[1] = "stealkills",[2] = kills}
