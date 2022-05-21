@@ -1,3 +1,4 @@
+-- Do not copy or skid scripts from this repo without giving credits to pix_dev
 local function load(file,lib,win)
   local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/TheLolik/sb-script/main/"..file..".lua"))()
   loaded:start(lib,win)
