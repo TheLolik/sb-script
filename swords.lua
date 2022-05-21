@@ -56,7 +56,7 @@ function file:start(lib,win)
             return lib:Notification("Notify","Reedem kills you want to get.","Ok")
         end
         pcall(function()
-            local args = {[1] = "stealkills",[2] = kills}
+            local args = {[1] = "stealkills",[2] = tonumber(kills)}
             f:fire(args)
         end)
     end)
