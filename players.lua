@@ -38,7 +38,7 @@ function file:start(lib,win)
     kills:Label("God-Mode.")
     kills:Toggle("God-mode everyone",false,function(x)
         options.everyone = x
-        while options.everyone == true and game.RunService.RenderStepped:Wait() do
+        while options.everyone == true and wait() do
             for _,v in pairs(game.Players:GetChildren()) do
                 if v.Character then
                     local args = {[1] = "hitplr",[2] = v.Character,[3] = -1000}
@@ -50,7 +50,7 @@ function file:start(lib,win)
 
     kills:Toggle("God-mode others",false,function(x)
         options.others = x
-        while options.others == true and game.RunService.RenderStepped:Wait() do
+        while options.others == true and wait() do
             for _,v in pairs(game.Players:GetChildren()) do
                 if (v.Character) and (v.Name ~= game.Players.LocalPlayer.Name) then
                     local args = {[1] = "hitplr",[2] = v.Character,[3] = -1000}
@@ -62,7 +62,7 @@ function file:start(lib,win)
 
     kills:Toggle("God-mode your self",false,function(x)
         options.me = x
-        while options.me == true and game.RunService.RenderStepped:Wait() do
+        while options.me == true and wait() do
             if game.Players.LocalPlayer.Character then
                 local args = {[1] = "hitplr",[2] = game.Players.LocalPlayer.Character,[3] = -1000}
                 f:fire(args)
