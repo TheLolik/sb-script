@@ -2,7 +2,7 @@ local f = loadstring(game:HttpGet("https://raw.githubusercontent.com/TheLolik/sb
 
 local file = {}
 function file:start(lib,win)
-    local tab = win:Tab("Swords")
+    local tab = win:Tab("Main")
     local req = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
     local gid = nil
     local kills = 0
