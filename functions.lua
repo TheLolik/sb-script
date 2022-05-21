@@ -1,6 +1,6 @@
 local f = {}
-local function f:fire(args,str,tool)
-    if str == nil then
+local function f:fire(args,tool)
+    if typeof(args) == "table" then
         args = unpack(args)
     end
     if game.Players.LocalPlayer.Character then
