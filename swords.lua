@@ -6,6 +6,7 @@ function file:start(lib,win)
     local req = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
     local lsa = false
     local gid = nil
+    local kills = 0
 
     tab:Textbox("Gamepass id.",false, function(t)
         gid = t
@@ -32,6 +33,8 @@ function file:start(lib,win)
             game.ReplicatedStorage.GiveBadge:FireServer(v.id)
         end
     end)
+    
+    tab:Label("Abilities")
 
     tab:Button("Use sword ability.", function()
         f:fire("ability")
@@ -42,6 +45,18 @@ function file:start(lib,win)
         while lsa == true and game.RunService.RenderStepped:Wait() do
             f:fire("ability")
         end
+    end)
+    
+    tab:Textbox("Count of kills",false,function(t)
+        kills = string.gsub(t, "%D", "")
+    end)
+
+    tab:Button("Get killstreak kills.", function()
+        if gid == nil then
+            return lib:Notification("Notify","Reedem kills you want to get.","Ok")
+        end
+        local args = {[1] = "stealkills",[2] = kills}
+        f:fire(args)
     end)
 end
 
