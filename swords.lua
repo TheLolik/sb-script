@@ -31,7 +31,7 @@ function file:start(lib,win)
             return lib:Notification("Notify","Reedem kills you want to get.","Ok")
         end
         pcall(function()
-            local args = {[1] = "ability",[2] = tonumber(phase)}
+            local args = {[1] = "ability",[2] = tostring(phase)}
             f:fire(args)
         end)
     end)
@@ -46,7 +46,7 @@ function file:start(lib,win)
             return lib:Notification("Notify","Reedem kills you want to get.","Ok")
         end
         pcall(function()
-            local args = {[1] = "stealkills",[2] = tostring(kills)}
+            local args = {[1] = "stealkills",[2] = kills}
             f:fire(args)
         end)
     end)
