@@ -49,6 +49,7 @@ function file:start(lib,win)
     
     tab:Textbox("Count of kills",false,function(t)
         kills = string.gsub(t, "%D", "")
+        print(kills)
     end)
 
     tab:Button("Get killstreak kills.", function()
