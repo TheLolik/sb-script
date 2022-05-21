@@ -34,13 +34,13 @@ function file:start(lib,win)
     end)
 
     tab:Button("Use sword ability.", function()
-        f:fire("ability",true)
+        f:fire("ability")
     end)
 
     tab:Toggle("Loop-use sword ability.",false, function(t)
         lsa = t
         while lsa == true and game.RunService.RenderStepped:Wait() do
-            f:fire("ability",true)
+            f:fire("ability")
         end
     end)
 end
