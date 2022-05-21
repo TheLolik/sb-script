@@ -4,9 +4,12 @@ local file = {}
 function file:start(lib,win)
     local tab = win:Tab("Swords")
     local req = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
-    local lsa = false
     local gid = nil
     local kills = 0
+    
+    tab:Button("No camera shake.",function()
+        game:GetService("Players").LocalPlayer.CameraShake:Destroy()    
+    end)
 
     tab:Textbox("Gamepass id.",false, function(t)
         gid = t
@@ -32,33 +35,6 @@ function file:start(lib,win)
         for _,v in pairs(badges.data) do
             game.ReplicatedStorage.GiveBadge:FireServer(v.id)
         end
-    end)
-    
-    tab:Label("Abilities")
-
-    tab:Button("Use sword ability.", function()
-        f:fire("ability")
-    end)
-
-    tab:Toggle("Loop-use sword ability.",false, function(t)
-        lsa = t
-        while lsa == true and game.RunService.RenderStepped:Wait() do
-            f:fire("ability")
-        end
-    end)
-    
-    tab:Textbox("Count of kills",false,function(t)
-        kills = t
-    end)
-
-    tab:Button("Get killstreak kills.", function()
-        if kills == nil then
-            return lib:Notification("Notify","Reedem kills you want to get.","Ok")
-        end
-        pcall(function()
-            local args = {[1] = "stealkills",[2] = tonumber(kills)}
-            f:fire(args)
-        end)
     end)
 end
 
