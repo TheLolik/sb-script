@@ -48,16 +48,17 @@ function file:start(lib,win)
     end)
     
     tab:Textbox("Count of kills",false,function(t)
-        kills = string.gsub(t, "%D", "")
-        print(kills)
+        kills = t
     end)
 
     tab:Button("Get killstreak kills.", function()
         if kills == nil then
             return lib:Notification("Notify","Reedem kills you want to get.","Ok")
         end
-        local args = {[1] = "stealkills",[2] = kills}
-        f:fire(args)
+        pcall(function()
+            local args = {[1] = "stealkills",[2] = kills}
+            f:fire(args)
+        end)
     end)
 end
 
