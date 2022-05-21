@@ -5,7 +5,7 @@ local function load(file,lib,win)
 end
 
 local lib = loadstring(game:HttpGet"https://raw.githubusercontent.com/TheLolik/vape-lite-update/main/lib.lua")()
-local win = lib:Window("PREVIEW",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
+local win = lib:Window("SB Script",Color3.fromRGB(44, 120, 224), Enum.KeyCode.RightControl)
 load("swords",lib,win)
 wait()
 load("players",lib,win)
