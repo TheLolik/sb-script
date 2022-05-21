@@ -1,5 +1,5 @@
 local f = {}
-local function fire(args,tool)
+local function f:fire(args,tool)
     if game.Players.LocalPlayer.Character then
         if tool == nil then
             if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
