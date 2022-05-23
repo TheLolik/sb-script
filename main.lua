@@ -1,6 +1,6 @@
 -- Do not copy or skid scripts from this repo without giving credits to pix_dev
 -- Owner of game sucks my d##k
--- PLEASE DONT SPAM WITH ABILITIES TO PREVENT GETTING BANNED
+-- PLEASE DONT SPAM WITH ABILITIES WITH APOCALYPSE SWORD TO PREVENT GETTING BANNED
 local function load(file,lib,win)
   local loaded = loadstring(game:HttpGet("https://raw.githubusercontent.com/TheLolik/sb-script/main/"..file..".lua"))()
   loaded:start(lib,win)
