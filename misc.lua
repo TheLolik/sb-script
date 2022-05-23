@@ -48,7 +48,7 @@ function file:start(lib,win)
                 game.Players.LocalPlayer:Kick("Admin or owner joined to this server.")
             end
         end
-    end
+    end)
 end
 
 return file
