@@ -44,7 +44,7 @@ function file:start(lib,win)
     
     game.Players.PlayerAdded:Connect(function(plr)
         if (plr:GetRoleInGroup(14786405) == "Admin") or (plr:GetRoleInGroup(14786405) == "Owner") then
-            if koaj == true then
+            if k == true then
                 game.Players.LocalPlayer:Kick("Admin or owner joined to this server.")
             end
         end
