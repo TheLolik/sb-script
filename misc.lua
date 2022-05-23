@@ -6,6 +6,7 @@ function file:start(lib,win)
     local req = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
     local gid = nil
     local kills = 0
+    local koaj = false
     
     tab:Button("No camera shake.",function()
         game:GetService("Players").LocalPlayer.CameraShake:Destroy()    
@@ -36,6 +37,16 @@ function file:start(lib,win)
             game.ReplicatedStorage.GiveBadge:FireServer(v.id)
         end
     end)
+    
+    tab:Toggle("Kick on admin join",false,function(x)
+        koaj = x    
+    end)
+    
+    game.Players.PlayerAdded:Connect(function(plr)
+        if (plr:GetRoleInGroup(14786405)) == "Admin" or (plr:GetRoleInGroup(14786405) == "Owner") and (koaj == true) then
+            game.Players.LocalPlayer:Kick("Admin or owner joined to this server.")
+        end
+    end
 end
 
 return file
