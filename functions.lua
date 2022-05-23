@@ -1,40 +1,46 @@
 local f = {}
-function f:fire(args,tool)
-    if game.Players.LocalPlayer.Character then
+
+function f:getplr(plr)
+    if plr == nil then
+        return game.Players.LocalPlayer
+    else
+        if game.Players[plr] then
+            return game.Players[plr]
+        end
+    end
+    return nil
+end
+
+function f:getsword(tool,plr)
+    if f:getplr(plr).Character then
         if tool == nil then
-            if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
-                if typeof(args) == "table" then
-                    return game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer(unpack(args))
-                else
-                    return game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Tool").RemoteEvent:FireServer(args)
-                end
-            elseif game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") then
-                if typeof(args) == "table" then
-                    return game:GetService("Players").LocalPlayer.Backpack:FindFirstChildOfClass("Tool").RemoteEvent:FireServer(unpack(args))
-                else
-                    return game:GetService("Players").LocalPlayer.Backpack:FindFirstChildOfClass("Tool").RemoteEvent:FireServer(args)
-                end
+            if f:getplr(plr).Character:FindFirstChildOfClass("Tool") then
+                return f:getplr(plr).Character:FindFirstChildOfClass("Tool")
+            elseif f:getplr(plr).Backpack:FindFirstChildOfClass("Tool") then
+                return f:getplr(plr).Backpack:FindFirstChildOfClass("Tool")
             end
         else
-            if game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool") then
-                if game.Players.LocalPlayer.Character:FindFirstChild(tool) then
-                    if typeof(args) == "table" then
-                        return game:GetService("Players").LocalPlayer.Character:FindFirstChild(tool).RemoteEvent:FireServer(unpack(args))
-                    else
-                        return game:GetService("Players").LocalPlayer.Character:FindFirstChild(tool).RemoteEvent:FireServer(args)
-                    end
-                end
-            elseif game.Players.LocalPlayer.Backpack:FindFirstChildOfClass("Tool") then
-                if game.Players.LocalPlayer.Backpack:FindFirstChild(tool) then
-                    if typeof(args) == "table" then
-                        return game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(tool).RemoteEvent:FireServer(unpack(args))
-                    else
-                        return game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(tool).RemoteEvent:FireServer(args)
-                    end
-                end
+            if f:getplr(plr).Character:FindFirstChild(tool) then
+                return f:getplr(plr).Character:FindFirstChild(tool)
+            elseif f:getplr(plr).Backpack:FindFirstChild(tool) then
+                return f:getplr(plr).Backpack:FindFirstChild(tool)
             end
         end
     end
-    return false
+    return nil
 end
+
+function f:fire(args,tool,plr)
+    if f:getplr(plr).Character then
+        if f:getsword(tool,plr) then
+            if typeof(args) == "table" then
+                return f:getsword(tool,plr).RemoteEvent:FireServer(unpack(args))
+            else
+                return f:getsword(tool,plr).RemoteEvent:FireServer(args)
+            end
+        end
+    end
+    return nil
+end
+
 return f
